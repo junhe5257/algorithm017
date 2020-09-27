@@ -1,0 +1,16 @@
+Queue是一个接口，继承自Collection接口，是FIFO的队列，底层采用单链表实现，故而增删的时间复杂度为
+O(1)而随机查找的时间复杂度为O(n),在其中定义了add、offer、remove、poll、element、peek等诸多方法，
+它的实现包括我们常用的LinkedList、LinkedBlockingQueue以及接下来提到的PriorityQueue。
+
+PriorityQueue继承自抽象类AbstractQueue，而抽象类AbstractQueue实现了Queue接口，PriorityQueue
+意为优先级队列，底层采用小顶堆结构，也就是一种特殊的完全二叉树，PriorityQueue 的出队和入队操作时间复杂
+度都是 O(log(n))，仅与堆的高度有关，按照优先级出队，而实现优先级队列的关键就是比较器Comparator，
+Comparator默认按照元素的自然顺序排序，我们也可以重写Comparator接口来自定义排序的方式,例如下面的写法：
+PriorityQueue<Integer> pq = new PriorityQueue<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2 - o1;
+            }
+        });
+优先队列也支持自动扩容，具体实现在grow方法中，初始容量为11，原队列大小小于64时，直接翻倍再+2，原队列大小
+大于64时，增加50%。其实还有好多想写的，但是今天太累了55555
